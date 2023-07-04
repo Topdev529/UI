@@ -7,23 +7,23 @@ const printDOM = document.querySelector(".board.print-board");
 const timeText = document.querySelector(".time-text");
 
 function updateTime() {
-  const now = new Date();
-  const dateOptions = {
-    month: "short",
-    day: "numeric",
-  };
-  const timeOptions = {
-    hour: "numeric",
-    minute: "numeric",
-    second: "numeric",
-    hour12: true,
-  };
-  const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-  const dayOfWeekStr = daysOfWeek[now.getDay()];
-  const dateStr = now.toLocaleDateString("en-US", dateOptions);
-  const timeStr = now.toLocaleTimeString("en-US", timeOptions);
-  const yearStr = now.getFullYear().toString().slice(-2);
-  timeText.textContent = `${timeStr} ${dayOfWeekStr} ${dateStr} '${yearStr}`;
+    const now = new Date();
+    const dateOptions = {
+        month: "short",
+        day: "numeric",
+    };
+    const timeOptions = {
+        hour: "numeric",
+        minute: "numeric",
+        second: "numeric",
+        hour12: true,
+    };
+    const daysOfWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    const dayOfWeekStr = daysOfWeek[now.getDay()];
+    const dateStr = now.toLocaleDateString("en-US", dateOptions);
+    const timeStr = now.toLocaleTimeString("en-US", timeOptions);
+    const yearStr = now.getFullYear().toString().slice(-2);
+    timeText.textContent = `${timeStr} ${dayOfWeekStr} ${dateStr} '${yearStr}`;
 }
 
 updateTime();
@@ -32,10 +32,10 @@ setInterval(updateTime, 1000);
 
 // Print Settings
 const printSetting = {
-  copies: 1,
-  pagesType: 0,
-  colorType: 0,
-  layoutType: 0,
+    copies: 1,
+    pagesType: 0,
+    colorType: 0,
+    layoutType: 0,
 };
 
 const PAGES = ["All", "Current", "Custom"];
@@ -51,165 +51,164 @@ let selectedDocType = "sizeNotSelected"; // sizeNotSelected, sizeEdited, globalS
 let selectedUnit = 0;
 
 const paperSetting = {
-  source: 0,
-  type: 0, // 0: Plain, 1: Matte, 2: Glossy, 3: Envelope
-  quality: 0, // 0: Standard, 1: Draft, 2: High
-  twoSided: 0, // 0: ON, 1: OFF
-  size: {
-    title: "A4",
-    width: "210",
-    height: "297",
-    unit: "mm",
-  },
+    source: 0,
+    type: 0, // 0: Plain, 1: Matte, 2: Glossy, 3: Envelope
+    quality: 0, // 0: Standard, 1: Draft, 2: High
+    twoSided: 0, // 0: ON, 1: OFF
+    size: {
+        title: "A4",
+        width: "210",
+        height: "297",
+        unit: "mm",
+    },
 };
 
-const docSizes = [
-  {
-    title: "A4",
-    width: "210",
-    height: "297",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "10×15cm",
-    width: "4",
-    height: "6",
-    unit: "in",
-    type: "local",
-  },
-  {
-    title: "13×18cm",
-    width: "5",
-    height: "7",
-    unit: "in",
-    type: "local",
-  },
-  {
-    title: "A6",
-    width: "105",
-    height: "148",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "A5",
-    width: "148",
-    height: "210",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "B5",
-    width: "182",
-    height: "257",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "9×13cm",
-    width: "3.5",
-    height: "5",
-    unit: "in",
-    type: "local",
-  },
-  {
-    title: "13×20cm",
-    width: "5",
-    height: "8",
-    unit: "in",
-    type: "local",
-  },
-  {
-    title: "20×25cm",
-    width: "8",
-    height: "10",
-    unit: "in",
-    type: "local",
-  },
-  {
-    title: "16:9",
-    width: "102",
-    height: "181",
-    unit: "mm",
-    type: "local",
-  },
-  {
-    width: "100",
-    height: "148",
-    unit: "cm",
-    type: "local",
-  },
-  {
-    title: "Env #10",
-    width: "4.1/2",
-    height: "9.1/2",
-    unit: "in",
-    type: "global",
-  },
-  {
-    title: "Env DL",
-    width: "110",
-    height: "220",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "Env C6",
-    width: "114",
-    height: "162",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "Letter",
-    width: "8.1/2",
-    height: "11",
-    unit: "in",
-    type: "local",
-  },
-  {
-    title: "Legal",
-    width: "8.1/2",
-    height: "14",
-    unit: "in",
-    type: "local",
-  },
-  {
-    title: "A3",
-    width: "297",
-    height: "420",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "A3+",
-    width: "329",
-    height: "483",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "A2",
-    width: "420",
-    height: "594",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "B4",
-    width: "257",
-    height: "364",
-    unit: "mm",
-    type: "global",
-  },
-  {
-    title: "A3",
-    width: "364",
-    height: "515",
-    unit: "mm",
-    type: "global",
-  },
+const docSizes = [{
+        title: "A4",
+        width: "210",
+        height: "297",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "10Ã—15cm",
+        width: "4",
+        height: "6",
+        unit: "in",
+        type: "local",
+    },
+    {
+        title: "13Ã—18cm",
+        width: "5",
+        height: "7",
+        unit: "in",
+        type: "local",
+    },
+    {
+        title: "A6",
+        width: "105",
+        height: "148",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "A5",
+        width: "148",
+        height: "210",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "B5",
+        width: "182",
+        height: "257",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "9Ã—13cm",
+        width: "3.5",
+        height: "5",
+        unit: "in",
+        type: "local",
+    },
+    {
+        title: "13Ã—20cm",
+        width: "5",
+        height: "8",
+        unit: "in",
+        type: "local",
+    },
+    {
+        title: "20Ã—25cm",
+        width: "8",
+        height: "10",
+        unit: "in",
+        type: "local",
+    },
+    {
+        title: "16:9",
+        width: "102",
+        height: "181",
+        unit: "mm",
+        type: "local",
+    },
+    {
+        width: "100",
+        height: "148",
+        unit: "cm",
+        type: "local",
+    },
+    {
+        title: "Env #10",
+        width: "4.1/2",
+        height: "9.1/2",
+        unit: "in",
+        type: "global",
+    },
+    {
+        title: "Env DL",
+        width: "110",
+        height: "220",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "Env C6",
+        width: "114",
+        height: "162",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "Letter",
+        width: "8.1/2",
+        height: "11",
+        unit: "in",
+        type: "local",
+    },
+    {
+        title: "Legal",
+        width: "8.1/2",
+        height: "14",
+        unit: "in",
+        type: "local",
+    },
+    {
+        title: "A3",
+        width: "297",
+        height: "420",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "A3+",
+        width: "329",
+        height: "483",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "A2",
+        width: "420",
+        height: "594",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "B4",
+        width: "257",
+        height: "364",
+        unit: "mm",
+        type: "global",
+    },
+    {
+        title: "A3",
+        width: "364",
+        height: "515",
+        unit: "mm",
+        type: "global",
+    },
 ];
 
 /* /////////////////////////////////////////////////
@@ -237,19 +236,19 @@ const layoutContents = document.querySelectorAll(".selecting.layouts .content");
 // select Paper Type Settting DOM
 const paperTypeDOM = document.querySelector(".item.paper-type");
 const paperTypeContents = document.querySelectorAll(
-  ".item.paper-type .details"
+    ".item.paper-type .details"
 );
 
 // select Paper Quality Settting DOM
 const paperQualityDOM = document.querySelector(".item.paper-quality");
 const paperQualityContents = document.querySelectorAll(
-  ".item.paper-quality .details"
+    ".item.paper-quality .details"
 );
 
 // select 2-Sided Rendering Settting DOM
 const paperTwoSidedDOM = document.querySelector(".item.paper-two-sided");
 const paperTwoSideContents = document.querySelectorAll(
-  ".item.paper-two-sided .details"
+    ".item.paper-two-sided .details"
 );
 
 // select Document Size Customize DOM
@@ -262,23 +261,23 @@ const selectUnitDOM = document.querySelector(".unit-selector div");
 
 // select Document Size Setting DOM
 const sizeNotSelected = document.querySelector(
-  ".dropdown-toggle .item-detail.no-selected"
+    ".dropdown-toggle .item-detail.no-selected"
 );
 const sizeEdited = document.querySelector(
-  ".dropdown-toggle .item-detail.editing"
+    ".dropdown-toggle .item-detail.editing"
 );
 const globalSizeSelected = document.querySelector(
-  ".dropdown-toggle .item-detail.global"
+    ".dropdown-toggle .item-detail.global"
 );
 const localSizeSelected = document.querySelector(
-  ".dropdown-toggle .item-detail.local"
+    ".dropdown-toggle .item-detail.local"
 );
 
 const dropdownDetailDOM = {
-  sizeNotSelected: sizeNotSelected,
-  sizeEdited: sizeEdited,
-  globalSizeSelected: globalSizeSelected,
-  localSizeSelected: localSizeSelected,
+    sizeNotSelected: sizeNotSelected,
+    sizeEdited: sizeEdited,
+    globalSizeSelected: globalSizeSelected,
+    localSizeSelected: localSizeSelected,
 };
 
 const dropdownToggleDOM = document.querySelector(".dropdown-toggle");
@@ -288,35 +287,35 @@ const dropdownMenu = document.querySelector(".dropdown-menu");
 const dropdownItemsArea = document.querySelector(".dropdown-items-area");
 // Create dropdown items from docSizes array
 const dropdownItems = docSizes.map((docSize) => {
-  const sizeTitle = docSize.title
-    ? `<span class="size-title">${docSize.title}</span>`
-    : "";
-  const sizeDetails = `<span>${docSize.width}×${docSize.height} ${docSize.unit}</span>`;
-  return `<a class="dropdown-item" href="#" data-size-type="${docSize.type}SizeSelected" data-size-title="${docSize.title}" data-size-width="${docSize.width}" data-size-height="${docSize.height}" data-size-unit="${docSize.unit}">
+    const sizeTitle = docSize.title ?
+        `<span class="size-title">${docSize.title}</span>` :
+        "";
+    const sizeDetails = `<span>${docSize.width}Ã—${docSize.height} ${docSize.unit}</span>`;
+    return `<a class="dropdown-item" href="#" data-size-type="${docSize.type}SizeSelected" data-size-title="${docSize.title}" data-size-width="${docSize.width}" data-size-height="${docSize.height}" data-size-unit="${docSize.unit}">
               ${sizeTitle} ${sizeDetails}
             </a>`;
 });
 
 // Add custom size dropdown item to the beginning of the dropdown items array
 dropdownItems.unshift(
-  '<a class="dropdown-item" href="#" data-size-type="sizeEdited" data-size-title="" data-size-width="" data-size-height="" data-size-unit=""><span class="size-title">Custom Size</span></a>'
+    '<a class="dropdown-item" href="#" data-size-type="sizeEdited" data-size-title="" data-size-width="" data-size-height="" data-size-unit=""><span class="size-title">Custom Size</span></a>'
 );
 
 // function to initialize the values
 function initialize() {
-  settingDOM.style.display = "flex";
-  printDOM.style.display = "none";
-  setCopiesDOM.value = printSetting.copies;
-  pagesContents[printSetting.pagesType].classList.add("active");
-  colorContents[printSetting.colorType].classList.add("active");
-  layoutContents[printSetting.layoutType].classList.add("active");
-  paperTypeContents[paperSetting.type].classList.add("active");
-  paperQualityContents[paperSetting.quality].classList.add("active");
-  paperTwoSideContents[paperSetting.twoSided].classList.add("active");
-  // Add dropdown items to dropdown items area
-  dropdownItemsArea.innerHTML = dropdownItems.join("");
-  dropdownDetailDOM[selectedDocType].style.display = "block";
-  selectUnitDOM.innerHTML = UNITS[selectedUnit];
+    settingDOM.style.display = "flex";
+    printDOM.style.display = "none";
+    setCopiesDOM.value = printSetting.copies;
+    pagesContents[printSetting.pagesType].classList.add("active");
+    colorContents[printSetting.colorType].classList.add("active");
+    layoutContents[printSetting.layoutType].classList.add("active");
+    paperTypeContents[paperSetting.type].classList.add("active");
+    paperQualityContents[paperSetting.quality].classList.add("active");
+    paperTwoSideContents[paperSetting.twoSided].classList.add("active");
+    // Add dropdown items to dropdown items area
+    dropdownItemsArea.innerHTML = dropdownItems.join("");
+    dropdownDetailDOM[selectedDocType].style.display = "block";
+    selectUnitDOM.innerHTML = UNITS[selectedUnit];
 }
 
 // set the initial value of the input element
@@ -327,117 +326,117 @@ window.onload = initialize();
 /////////////////////////////////////////// */
 // function to increase the value of copies
 function increaseCopies() {
-  setCopiesDOM.value++;
-  updatePreview("preview");
+    setCopiesDOM.value++;
+    updatePreview("preview");
 }
 
 // function to decrease the value of copies
 function decreaseCopies() {
-  if (setCopiesDOM.value > 1) {
-    setCopiesDOM.value--;
-    updatePreview("preview");
-  }
+    if (setCopiesDOM.value > 1) {
+        setCopiesDOM.value--;
+        updatePreview("preview");
+    }
 }
 
 // function to change the value of copies by input
 function setCopies() {
-  console.log("Copy changes!!!");
+    console.log("Copy changes!!!");
 }
 
 function prevBtnAction(contentsDOM, changeValue) {
-  // hide the current content
-  contentsDOM[printSetting[changeValue]].classList.remove(
-    "active",
-    "animate__fadeInRight"
-  );
+    // hide the current content
+    contentsDOM[printSetting[changeValue]].classList.remove(
+        "active",
+        "animate__fadeInRight"
+    );
 
-  // update the index
-  printSetting[changeValue] =
-    (printSetting[changeValue] - 1 + contentsDOM.length) % contentsDOM.length;
+    // update the index
+    printSetting[changeValue] =
+        (printSetting[changeValue] - 1 + contentsDOM.length) % contentsDOM.length;
 
-  // show the new content
-  contentsDOM[printSetting[changeValue]].classList.add(
-    "active",
-    "animate__fadeInLeft"
-  );
+    // show the new content
+    contentsDOM[printSetting[changeValue]].classList.add(
+        "active",
+        "animate__fadeInLeft"
+    );
 
-  updatePreview("preview");
+    updatePreview("preview");
 }
 
 function nextBtnAction(contentsDOM, changeValue) {
-  // hide the current content
-  contentsDOM[printSetting[changeValue]].classList.remove(
-    "active",
-    "animate__fadeInLeft"
-  );
+    // hide the current content
+    contentsDOM[printSetting[changeValue]].classList.remove(
+        "active",
+        "animate__fadeInLeft"
+    );
 
-  // update the index
-  printSetting[changeValue] =
-    (printSetting[changeValue] + 1 + contentsDOM.length) % contentsDOM.length;
+    // update the index
+    printSetting[changeValue] =
+        (printSetting[changeValue] + 1 + contentsDOM.length) % contentsDOM.length;
 
-  // show the new content
-  contentsDOM[printSetting[changeValue]].classList.add(
-    "active",
-    "animate__fadeInRight"
-  );
+    // show the new content
+    contentsDOM[printSetting[changeValue]].classList.add(
+        "active",
+        "animate__fadeInRight"
+    );
 
-  updatePreview("preview");
+    updatePreview("preview");
 }
 
 // add event listeners to the Page Selection buttons
 prevPagesBtn.addEventListener("click", () =>
-  prevBtnAction(pagesContents, "pagesType")
+    prevBtnAction(pagesContents, "pagesType")
 );
 
 nextPagesBtn.addEventListener("click", () =>
-  nextBtnAction(pagesContents, "pagesType")
+    nextBtnAction(pagesContents, "pagesType")
 );
 
 // add event listeners to the Color Selection buttons
 prevColorBtn.addEventListener("click", () =>
-  prevBtnAction(colorContents, "colorType")
+    prevBtnAction(colorContents, "colorType")
 );
 
 nextColorBtn.addEventListener("click", () =>
-  nextBtnAction(colorContents, "colorType")
+    nextBtnAction(colorContents, "colorType")
 );
 
 // add event listeners to the Layout Selection buttons
 prevLayoutBtn.addEventListener("click", () =>
-  prevBtnAction(layoutContents, "layoutType")
+    prevBtnAction(layoutContents, "layoutType")
 );
 
 nextLayoutBtn.addEventListener("click", () =>
-  nextBtnAction(layoutContents, "layoutType")
+    nextBtnAction(layoutContents, "layoutType")
 );
 
 /* ///////////////////////////////////////////
 ///////////////  PaperSetting  ///////////////
 /////////////////////////////////////////// */
 function nextContentsAction(contentsDOM, changeValue) {
-  // hide the current content
-  contentsDOM[paperSetting[changeValue]].classList.remove("active");
+    // hide the current content
+    contentsDOM[paperSetting[changeValue]].classList.remove("active");
 
-  // update the index
-  paperSetting[changeValue] =
-    (paperSetting[changeValue] + 1) % contentsDOM.length;
+    // update the index
+    paperSetting[changeValue] =
+        (paperSetting[changeValue] + 1) % contentsDOM.length;
 
-  // show the new content
-  contentsDOM[paperSetting[changeValue]].classList.add("active");
+    // show the new content
+    contentsDOM[paperSetting[changeValue]].classList.add("active");
 
-  updatePreview("preview");
+    updatePreview("preview");
 }
 
 paperTypeDOM.addEventListener("click", () =>
-  nextContentsAction(paperTypeContents, "type")
+    nextContentsAction(paperTypeContents, "type")
 );
 
 paperQualityDOM.addEventListener("click", () =>
-  nextContentsAction(paperQualityContents, "quality")
+    nextContentsAction(paperQualityContents, "quality")
 );
 
 paperTwoSidedDOM.addEventListener("click", () =>
-  nextContentsAction(paperTwoSideContents, "twoSided")
+    nextContentsAction(paperTwoSideContents, "twoSided")
 );
 
 // const dropdownDetailDOM = {
@@ -449,123 +448,123 @@ paperTwoSidedDOM.addEventListener("click", () =>
 
 // Event listener for dropdown item click
 dropdownItemsArea.addEventListener("click", (event) => {
-  event.preventDefault();
-  const target = event.target;
-  if (target.tagName === "A") {
-    const type = target.dataset.sizeType;
+    event.preventDefault();
+    const target = event.target;
+    if (target.tagName === "A") {
+        const type = target.dataset.sizeType;
 
-    dropdownDetailDOM[selectedDocType].style.display = "none";
-    selectedDocType = type;
-    dropdownDetailDOM[type].style.display = "block";
+        dropdownDetailDOM[selectedDocType].style.display = "none";
+        selectedDocType = type;
+        dropdownDetailDOM[type].style.display = "block";
 
-    if (type !== "sizeEdited") {
-      const width = target.dataset.sizeWidth;
-      const height = target.dataset.sizeHeight;
-      const unit = target.dataset.sizeUnit;
-      const subtitle = width + "X" + height + " " + unit;
-      const title = target.dataset.sizeTitle;
+        if (type !== "sizeEdited") {
+            const width = target.dataset.sizeWidth;
+            const height = target.dataset.sizeHeight;
+            const unit = target.dataset.sizeUnit;
+            const subtitle = width + "X" + height + " " + unit;
+            const title = target.dataset.sizeTitle;
 
-      paperSetting.size = {
-        title,
-        width,
-        height,
-        unit,
-      };
+            paperSetting.size = {
+                title,
+                width,
+                height,
+                unit,
+            };
 
-      if (title === "undefined") {
-        dropdownDetailDOM[type].querySelector(".title").innerHTML = subtitle;
-      } else {
-        dropdownDetailDOM[type].querySelector(".title").innerHTML = title;
-        dropdownDetailDOM[type].querySelector(".text").innerHTML = subtitle;
-      }
+            if (title === "undefined") {
+                dropdownDetailDOM[type].querySelector(".title").innerHTML = subtitle;
+            } else {
+                dropdownDetailDOM[type].querySelector(".title").innerHTML = title;
+                dropdownDetailDOM[type].querySelector(".text").innerHTML = subtitle;
+            }
+        }
     }
-  }
 });
 
 // Event listener for unit Selection in Custom Size
 function unitSelected() {
-  paperSetting.size.unit = UNITS[selectedUnit];
-  selectUnitDOM.innerHTML = UNITS[selectedUnit];
+    paperSetting.size.unit = UNITS[selectedUnit];
+    selectUnitDOM.innerHTML = UNITS[selectedUnit];
 }
 
 nextUnitBtn.addEventListener("click", () => {
-  selectedUnit = (selectedUnit + 1) % UNITS.length;
-  unitSelected();
+    selectedUnit = (selectedUnit + 1) % UNITS.length;
+    unitSelected();
 });
 
 prevUnitBtn.addEventListener("click", () => {
-  selectedUnit = (selectedUnit - 1 + UNITS.length) % UNITS.length;
-  unitSelected();
+    selectedUnit = (selectedUnit - 1 + UNITS.length) % UNITS.length;
+    unitSelected();
 });
 
 // Prevent Dropdown toggle expanded when click button or input box
 dropdownToggleDOM.addEventListener("click", (event) => {
-  event.preventDefault();
-  const target = event.target;
-  if (target.tagName !== "DIV") {
-    dropdown.classList.remove("show");
-    dropdownMenu.classList.remove("show");
-  }
+    event.preventDefault();
+    const target = event.target;
+    if (target.tagName !== "DIV") {
+        dropdown.classList.remove("show");
+        dropdownMenu.classList.remove("show");
+    }
 });
 
 // Event Listener for Custom Document Size DOM
 customWidthDOM.addEventListener("change", (event) => {
-  event.preventDefault();
-  paperSetting.size.width = event.target.value;
+    event.preventDefault();
+    paperSetting.size.width = event.target.value;
 });
 
 customHeightDOM.addEventListener("change", (event) => {
-  event.preventDefault();
-  paperSetting.size.height = event.target.value;
+    event.preventDefault();
+    paperSetting.size.height = event.target.value;
 });
 
 // Event Listener for Sufficient Print button clicked
 document.getElementById("sufficient-print").addEventListener("click", () => {
-  settingDOM.style.display = "none";
-  printDOM.style.display = "flex";
-  drawPrintDOM();
+    settingDOM.style.display = "none";
+    printDOM.style.display = "flex";
+    drawPrintDOM();
 });
 
 // Event Listener for Sufficient Print button clicked
 document.querySelector(".btn.btn-stop").addEventListener("click", () => {
-  printDOM.style.display = "none";
-  settingDOM.style.display = "flex";
+    printDOM.style.display = "none";
+    settingDOM.style.display = "flex";
 });
 
 /////////////////////////////////////////////////
 ///////// DOM Management in Print-board /////////
 /////////////////////////////////////////////////
 function drawPrintDOM() {
-  printDOM.querySelector(".item.id .value").innerHTML = "202308192";
+    printDOM.querySelector(".item.id .value").innerHTML = "202308192";
 
-  printDOM.querySelector(".item.quality .value").innerHTML =
-    QUALITIES[paperSetting.quality];
+    printDOM.querySelector(".item.quality .value").innerHTML =
+        QUALITIES[paperSetting.quality];
 
-  printDOM.querySelector(".item.color .value").innerHTML =
-    COLORS[printSetting.colorType];
+    printDOM.querySelector(".item.color .value").innerHTML =
+        COLORS[printSetting.colorType];
 
-  printDOM.querySelector(".item.size .value").innerHTML =
-    paperSetting.size.title;
+    printDOM.querySelector(".item.size .value").innerHTML =
+        paperSetting.size.title;
 
-  printDOM.querySelector(".item.orientation .value").innerHTML =
-    LAYOUTS[printSetting.layoutType];
+    printDOM.querySelector(".item.orientation .value").innerHTML =
+        LAYOUTS[printSetting.layoutType];
 
-  printDOM.querySelector(".item.pages .value").innerHTML = printSetting.copies;
+    printDOM.querySelector(".item.pages .value").innerHTML = printSetting.copies;
 
-  printDOM.querySelector(".item.paper-type .value").innerHTML =
-    PAPERTYPES[paperSetting.type];
+    printDOM.querySelector(".item.paper-type .value").innerHTML =
+        PAPERTYPES[paperSetting.type];
 }
 
 // Proceed Button DOM
 const proceedButton = document.getElementById("proceedButton");
-const modalTarget = isSuff
-  ? "#sufficientBalanceModal"
-  : "#insufficientBalanceModal";
+const modalTarget = isSuff ?
+    "#sufficientBalanceModal" :
+    "#insufficientBalanceModal";
 proceedButton.setAttribute("data-target", modalTarget);
 
-proceedButton.addEventListener("click", function (event) {
-  // Handle the click event here
-  onProceedClick();
+proceedButton.addEventListener("click", function(event) {
+    // Handle the click event here
+    onProceedClick();
 });
 
 // Sufficient Print Status Modal Event Listeners
@@ -576,29 +575,29 @@ const sufDetails = sufItem.querySelector(".details");
 const sufMore = sufMain.querySelector(".more");
 
 sufMore.addEventListener("click", (e) => {
-  e.preventDefault();
-  sufMain.style.display = "none";
-  sufDetails.style.display = "block";
-  sufDetails.querySelector(".doc-size").innerHTML =
-    paperSetting.size.title +
-    " " +
-    paperSetting.size.width +
-    " X " +
-    paperSetting.size.height +
-    " " +
-    paperSetting.size.unit;
-  sufDetails.querySelector(".copies").innerHTML = printSetting.copies;
-  sufDetails.querySelector(".price").innerHTML = "1.25";
+    e.preventDefault();
+    sufMain.style.display = "none";
+    sufDetails.style.display = "block";
+    sufDetails.querySelector(".doc-size").innerHTML =
+        paperSetting.size.title +
+        " " +
+        paperSetting.size.width +
+        " X " +
+        paperSetting.size.height +
+        " " +
+        paperSetting.size.unit;
+    sufDetails.querySelector(".copies").innerHTML = printSetting.copies;
+    sufDetails.querySelector(".price").innerHTML = "1.25";
 });
 
 sufDetails.addEventListener("click", (e) => {
-  sufMain.style.display = "block";
-  sufDetails.style.display = "none";
+    sufMain.style.display = "block";
+    sufDetails.style.display = "none";
 });
 
 sufItem.addEventListener("mouseleave", (e) => {
-  sufMain.style.display = "block";
-  sufDetails.style.display = "none";
+    sufMain.style.display = "block";
+    sufDetails.style.display = "none";
 });
 
 // Insufficient Print Status Modal Event Listeners
@@ -609,29 +608,29 @@ const insufDetails = insufItem.querySelector(".details");
 const insufMore = insufMain.querySelector(".more");
 
 insufMore.addEventListener("click", (e) => {
-  e.preventDefault();
-  insufMain.style.display = "none";
-  insufDetails.style.display = "block";
-  insufDetails.querySelector(".doc-size").innerHTML =
-    paperSetting.size.title +
-    " " +
-    paperSetting.size.width +
-    " X " +
-    paperSetting.size.height +
-    " " +
-    paperSetting.size.unit;
-  insufDetails.querySelector(".copies").innerHTML = printSetting.copies;
-  insufDetails.querySelector(".price").innerHTML = "1.25";
+    e.preventDefault();
+    insufMain.style.display = "none";
+    insufDetails.style.display = "block";
+    insufDetails.querySelector(".doc-size").innerHTML =
+        paperSetting.size.title +
+        " " +
+        paperSetting.size.width +
+        " X " +
+        paperSetting.size.height +
+        " " +
+        paperSetting.size.unit;
+    insufDetails.querySelector(".copies").innerHTML = printSetting.copies;
+    insufDetails.querySelector(".price").innerHTML = "1.25";
 });
 
 insufDetails.addEventListener("click", (e) => {
-  insufMain.style.display = "block";
-  insufDetails.style.display = "none";
+    insufMain.style.display = "block";
+    insufDetails.style.display = "none";
 });
 
 insufItem.addEventListener("mouseleave", (e) => {
-  insufMain.style.display = "block";
-  insufDetails.style.display = "none";
+    insufMain.style.display = "block";
+    insufDetails.style.display = "none";
 });
 
 /* /////////////////////////////////////////////////////////////////////
@@ -640,66 +639,66 @@ insufItem.addEventListener("mouseleave", (e) => {
 
 // returns the current print options
 function getPrintOptions() {
-  const { source, type, quality, twoSided, size } = paperSetting;
-  const { colorType } = printSetting;
+    const { source, type, quality, twoSided, size } = paperSetting;
+    const { colorType } = printSetting;
 
-  return {
-    source,
-    type,
-    quality,
-    twoSided,
-    size,
-    color: colorType,
-  };
+    return {
+        source,
+        type,
+        quality,
+        twoSided,
+        size,
+        color: colorType,
+    };
 }
 
 // To force the main application update the print preview
 function updatePreview(id) {
-  console.log(id, "is changed");
+    console.log(id, "is changed");
 }
 
 // To inform the main application that PROCEED button is clicked
 
 function onProceedClick() {
-  printSetting.copies = setCopiesDOM.value;
+    printSetting.copies = setCopiesDOM.value;
 
-  if (sizeEdited.style.display === "block") {
-    paperSetting.size.width = customWidthDOM.value;
-    paperSetting.size.height = customHeightDOM.value;
-  }
+    if (sizeEdited.style.display === "block") {
+        paperSetting.size.width = customWidthDOM.value;
+        paperSetting.size.height = customHeightDOM.value;
+    }
 
-  const info = {
-    source: "./assets/Screenshot_5.png",
-    destination: "preview",
-  };
-  drawPreview(info);
+    const info = {
+        source: "./assets/Screenshot_5.png",
+        destination: "preview",
+    };
+    drawPreview(info);
 }
 
 //
 function drawPreview(info) {
-  // destination = "preview"
-  const { source, destination } = info;
-  const previewElement = document.getElementById(destination);
+    // destination = "preview"
+    const { source, destination } = info;
+    const previewElement = document.getElementById(destination);
 
-  if (!source) {
-    // If source is empty, erase the preview
-    console.log("There is no source");
-    previewElement.innerHTML = "";
-    return;
-  }
+    if (!source) {
+        // If source is empty, erase the preview
+        console.log("There is no source");
+        previewElement.innerHTML = "";
+        return;
+    }
 
-  // Create a new image element and set its source to the provided URL
-  const img = new Image();
-  img.src = source;
+    // Create a new image element and set its source to the provided URL
+    const img = new Image();
+    img.src = source;
 
-  // When the image is loaded, draw it into the preview element
-  img.onload = () => {
-    // Clear the preview element first
-    previewElement.innerHTML = "";
+    // When the image is loaded, draw it into the preview element
+    img.onload = () => {
+        // Clear the preview element first
+        previewElement.innerHTML = "";
 
-    // Draw the image into the preview element
-    previewElement.appendChild(img);
-  };
+        // Draw the image into the preview element
+        previewElement.appendChild(img);
+    };
 }
 
 // document.querySelectorAll(".use-keyboard-input").forEach((element) => {

@@ -1,479 +1,472 @@
 <!DOCTYPE html>
 <html>
-  <head>
+
+<head>
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
-    />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="stylesheet" href="./setting.style.css" />
     <link rel="stylesheet" href="./print.style.css" />
     <link rel="stylesheet" href="./keyboard/Keyboard.css" />
-    <link
-      href="https://fonts.googleapis.com/icon?family=Material+Icons"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" />
     <title>Printer</title>
-  </head>
+</head>
 
-  <body>
+<body>
     <div class="board setting-board bg-grey">
-      <div class="header bg-white d-flex align-items-center font-Inter">
-        <button type="button" class="btn btn-back">
+        <div class="header bg-white d-flex align-items-center font-Inter">
+            <button type="button" class="btn btn-back">
           <img src="./assets/Back.png" />
           <span>BACK</span>
         </button>
-        <div
-          class="text d-flex flex-grow-1 justify-content-between align-items-center"
-        >
-          <div class="title">PRINT SETTING</div>
-          <div class="time d-flex align-items-center">
-            <img src="./assets/Wifi.png" />
-            <div class="time-text"></div>
-          </div>
+            <div class="text d-flex flex-grow-1 justify-content-between align-items-center">
+                <div class="title">PRINT SETTING</div>
+                <div class="time d-flex align-items-center">
+                    <img src="./assets/Wifi.png" />
+                    <div class="time-text"></div>
+                </div>
+            </div>
         </div>
-      </div>
-      <div class="body">
-        <div class="left-section">
-          <div class="left-section-content">
-            <div class="item">
-              <div class="title">Copies:</div>
-              <div class="selecting copies">
-                <button
-                  class="btn-increase"
-                  onclick="increaseCopies()"
-                ></button>
-                <input
-                  type="text"
-                  id="setting-copies"
-                  class="use-keyboard-input"
-                  onchange="setCopies()"
-                />
-                <button
-                  class="btn-decrease"
-                  onclick="decreaseCopies()"
-                ></button>
-                <!-- <div class="arrows">
+        <div class="body">
+            <div class="left-section">
+                <div class="left-section-content">
+                    <div class="item">
+                        <div class="title">Copies:</div>
+                        <div class="selecting copies">
+                            <button class="btn-increase" onclick="increaseCopies()"></button>
+                            <input type="text" id="setting-copies" class="use-keyboard-input" onchange="setCopies()" />
+                            <button class="btn-decrease" onclick="decreaseCopies()"></button>
+                            <!-- <div class="arrows">
                 </div> -->
-              </div>
-            </div>
-            <div class="item">
-              <div class="title">Pages:</div>
-              <div class="selecting slider pages">
-                <button class="btn-prev selecting-pages"></button>
-                <div class="content animate__animated">
-                  <img src="./assets/Pages_All.png" />
-                  <div class="desc">All</div>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">Pages:</div>
+                        <div class="selecting slider pages">
+                            <button class="btn-prev selecting-pages"></button>
+                            <div class="content animate__animated">
+                                <div class="imgb">
+                                    <img src="./assets/Pages_All.png" />
+                                </div>
+                                <div class="desc">All</div>
+                            </div>
+                            <div class="content animate__animated">
+                                <div class="imgb">
+                                    <img src="./assets/Pages_Current.png" />
+                                </div>
+                                <div class="desc">Current</div>
+                            </div>
+                            <div class="content animate__animated">
+                                <div class="input-box">
+                                    <input type="number" minlength="1" maxlength="2" id="setting-copies" class="use-keyboard-input" onchange="setCopies()">
+                                    <span>-</span>
+                                    <input type="number" minlength="1" maxlength="2" id="setting-copies" class="use-keyboard-input" onchange="setCopies()">
+                                </div>
+                            </div>
+                            <button class="btn-next selecting-pages"></button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">Color:</div>
+                        <div class="selecting slider colors">
+                            <button class="btn-prev selecting-color"></button>
+                            <div class="content animate__animated">
+                                <div class="imgb">
+                                    <img src="./assets/Color_Gray.png" />
+                                </div>
+                                <div class="desc">Grayscale</div>
+                            </div>
+                            <div class="content animate__animated">
+                                <div class="imgb">
+                                    <img src="./assets/Color_Multi.png" />
+                                </div>
+                                <div class="desc">Color</div>
+                            </div>
+                            <button class="btn-next selecting-color"></button>
+                        </div>
+                    </div>
+                    <div class="item">
+                        <div class="title">Layout:</div>
+                        <div class="selecting slider layouts">
+                            <button class="btn-prev selecting-layout"></button>
+                            <div class="content animate__animated">
+                                <div class="imgb">
+                                    <img src="./assets/Layout_Portrait.png" />
+                                </div>
+                                <div class="desc">Portrait</div>
+                            </div>
+                            <div class="content animate__animated">
+                                <div class="imgb">
+                                    <img src="./assets/Layout_Landscape.png" />
+                                </div>
+                                <div class="desc">Landscape</div>
+                            </div>
+                            <button class="btn-next selecting-layout"></button>
+                        </div>
+                    </div>
                 </div>
-                <div class="content animate__animated">
-                  <img src="./assets/Pages_Current.png" />
-                  <div class="desc">Current</div>
-                </div>
-                <div class="content animate__animated">
-                  <img src="./assets/Pages_Custom.png" />
-                  <div class="desc">Custom</div>
-                </div>
-                <button class="btn-next selecting-pages"></button>
-              </div>
-            </div>
-            <div class="item">
-              <div class="title">Color:</div>
-              <div class="selecting slider colors">
-                <button class="btn-prev selecting-color"></button>
-                <div class="content animate__animated">
-                  <img src="./assets/Color_Gray.png" />
-                  <div class="desc">Grayscale</div>
-                </div>
-                <div class="content animate__animated">
-                  <img src="./assets/Color_Multi.png" />
-                  <div class="desc">Color</div>
-                </div>
-                <button class="btn-next selecting-color"></button>
-              </div>
-            </div>
-            <div class="item">
-              <div class="title">Layout:</div>
-              <div class="selecting slider layouts">
-                <button class="btn-prev selecting-layout"></button>
-                <div class="content animate__animated">
-                  <img src="./assets/Layout_Portrait.png" />
-                  <div class="desc">Portrait</div>
-                </div>
-                <div class="content animate__animated">
-                  <img src="./assets/Layout_Landscape.png" />
-                  <div class="desc">Landscape</div>
-                </div>
-                <button class="btn-next selecting-layout"></button>
-              </div>
-            </div>
-          </div>
-          <button type="button" class="btn btn-home">
+                <button type="button" class="btn btn-home">
             <img src="./assets/Home.png" />
             <span>HOME</span>
           </button>
-        </div>
-        <div class="mid-section flex-grow-1">
-          <div class="row">
-            <div class="col-md-6">
-              <div class="item">
-                <div class="item-body">
-                  <div class="details oneSetting">
-                    <img src="./assets/Paper_source.png" />
-                    <!-- <div class="text">AUTO</div> -->
-                  </div>
-                  <div class="title">Paper source</div>
-                </div>
-              </div>
             </div>
-            <div class="col-md-6">
-              <div class="item dropdown">
-                <div class="item-body dropdown-toggle" data-toggle="dropdown">
-                  <div class="details oneSetting">
-                    <div class="item-detail no-selected">
-                      <div class="title font-26">Select<br />Size</div>
+            <div class="mid-section flex-grow-1">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-body">
+                                <div class="details oneSetting">
+                                    <div class="imgs">
+                                        <img src="./assets/Paper_source.png" />
+                                    </div>
+                                    <!-- <div class="text">AUTO</div> -->
+                                </div>
+                                <div class="title">Paper source</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="item-detail editing">
-                      <div class="editor">
-                        <input
-                          type="text"
-                          id="custom-size-width"
-                          class="use-keyboard-input"
-                        />
-                        <span class="font-21">×</span>
-                        <input
-                          type="text"
-                          id="custom-size-height"
-                          class="use-keyboard-input"
-                        />
-                      </div>
-                      <div class="unit-selector">
-                        <button class="btn-prev selecting-unit"></button>
-                        <div class="font-21 animate__animated"></div>
-                        <button class="btn-next selecting-unit"></button>
-                      </div>
+                    <div class="col-md-6">
+                        <div class="item dropdown">
+                            <div class="item-body dropdown-toggle" data-toggle="dropdown">
+                                <div class="details oneSetting">
+                                    <div class="item-detail no-selected">
+                                        <div class="title font-26">Select<br />Size</div>
+                                    </div>
+                                    <div class="item-detail editing">
+                                        <div class="editor">
+                                            <input type="text" id="custom-size-width" class="use-keyboard-input" />
+                                            <span class="font-21">×</span>
+                                            <input type="text" id="custom-size-height" class="use-keyboard-input" />
+                                        </div>
+                                        <div class="unit-selector">
+                                            <button class="btn-prev selecting-unit"></button>
+                                            <div class="font-21 animate__animated"></div>
+                                            <button class="btn-next selecting-unit"></button>
+                                        </div>
+                                    </div>
+                                    <div class="item-detail global">
+                                        <div class="title font-30"></div>
+                                        <div class="text textch"></div>
+                                    </div>
+                                    <div class="item-detail local">
+                                        <div class="title font-22"></div>
+                                        <div class="text textch"></div>
+                                    </div>
+                                </div>
+                                <div class="title">Document Size</div>
+                            </div>
+                            <div class="dropdown-menu">
+                                <div class="space"></div>
+                                <div class="dropdown-items-area"></div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="item-detail global">
-                      <div class="title font-43"></div>
-                      <div class="text"></div>
+                    <div class="col-md-6">
+                        <div class="item paper-type">
+                            <div class="item-body">
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/Paper_type_Plain.png" />
+                                    </div>
+                                    <div class="text">PLAIN</div>
+                                </div>
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/Paper_type_Matte.png" />
+                                    </div>
+                                    <div class="text">MATTE</div>
+                                </div>
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/Paper_type_Glossy.png" />
+                                    </div>
+                                    <div class="text">GLOSSY</div>
+                                </div>
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/Paper_type_Envelope.png" style="margin: 10px 0px" />
+                                    </div>
+                                    <div class="text">ENVELOPE</div>
+                                </div>
+                                <div class="title">Paper Type</div>
+                            </div>
+                        </div>
                     </div>
-                    <div class="item-detail local">
-                      <div class="title font-22"></div>
-                      <div class="text"></div>
+                    <div class="col-md-6">
+                        <div class="item paper-quality">
+                            <div class="item-body">
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/Quality_High.png" />
+                                    </div>
+                                    <div class="text">HIGH</div>
+                                </div>
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/Quality_Standard.png" />
+                                    </div>
+                                    <div class="text">STANDARD</div>
+                                </div>
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/Quality_Draft.png" />
+                                    </div>
+                                    <div class="text">DRAFT</div>
+                                </div>
+                                <div class="title">Quality</div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
-                  <div class="title">Document Size</div>
+                    <div class="col-md-6">
+                        <div class="item paper-two-sided">
+                            <div class="item-body">
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/2_sided_printing_on.png" />
+                                    </div>
+                                    <div class="text">ON</div>
+                                </div>
+                                <div class="details animate__animated animate__fadeInRight">
+                                    <div class="imgs">
+                                        <img src="./assets/2_sided_printing_off.png" />
+                                    </div>
+                                    <div class="text">OFF</div>
+                                </div>
+                                <div class="title">2-sided printing</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="item">
+                            <div class="item-body">
+                                <div class="details oneSetting">
+                                    <div class="imgs">
+                                        <img src="./assets/More_Advacned_settings.png" />
+                                    </div>
+                                    <div class="text">ADVANCED SETTING</div>
+                                </div>
+                                <div class="title">More Options</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="dropdown-menu">
-                  <div class="space"></div>
-                  <div class="dropdown-items-area"></div>
-                </div>
-              </div>
             </div>
-            <div class="col-md-6">
-              <div class="item paper-type">
-                <div class="item-body">
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/Paper_type_Plain.png" />
-                    <div class="text">PLAIN</div>
-                  </div>
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/Paper_type_Matte.png" />
-                    <div class="text">MATTE</div>
-                  </div>
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/Paper_type_Glossy.png" />
-                    <div class="text">GLOSSY</div>
-                  </div>
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img
-                      src="./assets/Paper_type_Envelope.png"
-                      style="margin: 10px 0px"
-                    />
-                    <div class="text">ENVELOPE</div>
-                  </div>
-                  <div class="title">Paper Type</div>
+            <div class="right-section">
+                <div class="right-section-content">
+                    <div class="title">Print preview:</div>
+                    <div class="preview" id="preview"></div>
                 </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="item paper-quality">
-                <div class="item-body">
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/Quality_High.png" />
-                    <div class="text">HIGH</div>
-                  </div>
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/Quality_Standard.png" />
-                    <div class="text">STANDARD</div>
-                  </div>
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/Quality_Draft.png" />
-                    <div class="text">DRAFT</div>
-                  </div>
-                  <div class="title">Quality</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="item paper-two-sided">
-                <div class="item-body">
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/2_sided_printing_on.png" />
-                    <div class="text">ON</div>
-                  </div>
-                  <div class="details animate__animated animate__fadeInRight">
-                    <img src="./assets/2_sided_printing_off.png" />
-                    <div class="text">OFF</div>
-                  </div>
-                  <div class="title">2-sided printing</div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-6">
-              <div class="item">
-                <div class="item-body">
-                  <div class="details oneSetting">
-                    <img src="./assets/More_Advacned_settings.png" />
-                    <div class="text">ADVANCED SETTING</div>
-                  </div>
-                  <div class="title">More Options</div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="right-section">
-          <div class="right-section-content">
-            <div class="title">Print preview:</div>
-            <div class="preview" id="preview"></div>
-          </div>
-          <button
-            id="proceedButton"
-            type="button"
-            class="btn"
-            data-toggle="modal"
-            data-target=""
-          >
+                <button id="proceedButton" type="button" class="btn" data-toggle="modal" data-target="">
             PROCEED
           </button>
+            </div>
         </div>
-      </div>
     </div>
     <div class="board print-board bg-white">
-      <div class="preview-section">
-        <div class="preview"></div>
-        <div class="status">
-          <div class="rate">21%</div>
-          <div class="stat">Status: Printing</div>
+        <div class="preview-section">
+            <div class="preview"></div>
+            <div class="status">
+                <div class="rate">21%</div>
+                <div class="stat">Status: Printing</div>
+            </div>
         </div>
-      </div>
-      <div class="detail-section">
-        <div class="detail-block">
-          <p class="label">Printer Name</p>
-          <div class="items">
-            <div class="item id">
-              <div class="title">Job Name/ID</div>
-              <div class="value"></div>
+        <div class="detail-section">
+            <div class="detail-block">
+                <p class="label">Printer Name</p>
+                <div class="items">
+                    <div class="item id">
+                        <div class="title">Job Name/ID</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="item quality">
+                        <div class="title">Quality</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="item color">
+                        <div class="title">Color</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="item size">
+                        <div class="title">Size</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="item orientation">
+                        <div class="title">Orientation</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="item pages">
+                        <div class="title">Pages</div>
+                        <div class="value"></div>
+                    </div>
+                    <div class="item paper-type">
+                        <div class="title">Paper Type</div>
+                        <div class="value"></div>
+                    </div>
+                </div>
             </div>
-            <div class="item quality">
-              <div class="title">Quality</div>
-              <div class="value"></div>
+            <div class="usage">
+                <p class="title">Consumable Usage</p>
+                <div class="items">
+                    <div class="item">
+                        <div class="title">Ink</div>
+                        <div class="value">$4.79</div>
+                    </div>
+                    <div class="item">
+                        <div class="title">Media</div>
+                        <div class="value">$1.25</div>
+                    </div>
+                </div>
             </div>
-            <div class="item color">
-              <div class="title">Color</div>
-              <div class="value"></div>
-            </div>
-            <div class="item size">
-              <div class="title">Size</div>
-              <div class="value"></div>
-            </div>
-            <div class="item orientation">
-              <div class="title">Orientation</div>
-              <div class="value"></div>
-            </div>
-            <div class="item pages">
-              <div class="title">Pages</div>
-              <div class="value"></div>
-            </div>
-            <div class="item paper-type">
-              <div class="title">Paper Type</div>
-              <div class="value"></div>
-            </div>
-          </div>
         </div>
-        <div class="usage">
-          <p class="title">Consumable Usage</p>
-          <div class="items">
-            <div class="item">
-              <div class="title">Ink</div>
-              <div class="value">$4.79</div>
-            </div>
-            <div class="item">
-              <div class="title">Media</div>
-              <div class="value">$1.25</div>
-            </div>
-          </div>
+        <div class="operation-section">
+            <button class="btn btn-sm btn-yellow">Print Queue</button>
+            <button class="btn btn-sm btn-green">Technical Support</button>
+            <button class="btn btn-stop">STOP</button>
         </div>
-      </div>
-      <div class="operation-section">
-        <button class="btn btn-sm btn-yellow">Print Queue</button>
-        <button class="btn btn-sm btn-green">Technical Support</button>
-        <button class="btn btn-stop">STOP</button>
-      </div>
     </div>
 
     <!-- The Modal -->
     <div class="modal fade" id="sufficientBalanceModal">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <div class="modal-title">Consumable Usage Information</div>
-            <div class="text">Know how much your print job costs</div>
-            <button type="button" class="close" data-dismiss="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="modal-title">Consumable Usage Information</div>
+                    <div class="text">Know how much your print job costs</div>
+                    <button type="button" class="close" data-dismiss="modal">
               <span>&times;</span>
             </button>
-          </div>
+                </div>
 
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="items d-flex">
-              <div class="item media">
-                <div class="main">
-                  <a class="more">more</a>
-                  <div class="type">Media</div>
-                  <div class="usage-amount">
-                    <div>Usage amount</div>
-                    <div class="price">$ 1.25</div>
-                  </div>
-                  <div class="pack">
-                    <div class="left">$500.00</div>
-                    <div class="right">
-                      <img src="./assets/Icon_Media.png" />
-                    </div>
-                  </div>
-                </div>
-                <div class="details">
-                  <div class="type">Media</div>
-                  <div class="doc-size"></div>
-                  <div><span class="copies"></span> pages</div>
-                  <div>$ <span class="price"></span></div>
-                </div>
-              </div>
-              <div class="item ink">
-                <div>
-                  <a class="more">more</a>
-                  <div class="type">Ink</div>
-                  <div class="usage-amount">
-                    <div>Usage amount</div>
-                    <div class="price">$ 1.25</div>
-                  </div>
-                  <div class="pack">
-                    <div class="left">$500.00</div>
-                    <div class="right">
-                      <img src="./assets/Icon_Ink.png" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="total-price">TOTAL:$ 2.50</div>
-          </div>
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="items d-flex">
+                        <div class="item media">
+                            <div class="main">
 
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <div class="button-area">
-              <button
-                type="button"
-                class="btn btn-danger"
-                id="sufficient-print"
-                data-dismiss="modal"
-              >
+                                <div class="type"><span>Media</span><small>unit: sheets</small>
+                                    <!-- <a class="more">more</a> -->
+                                </div>
+                                <div class="usage-amount">
+                                    <div>Usage amount</div>
+                                    <div class="price">$ 1.25</div>
+                                </div>
+                                <div class="pack">
+                                    <div class="center">more details</div>
+                                    <!-- <div class="right">
+                                        <img src="./assets/Icon_Media.png" />
+                                    </div> -->
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="type">Media</div>
+                                <div class="doc-size"></div>
+                                <div><span class="copies"></span> pages</div>
+                                <div>$ <span class="price"></span></div>
+                            </div>
+                        </div>
+                        <div class="item ink">
+                            <div>
+
+                                <div class="type"><span>Toner </span> <small>unit: mL</small>
+                                    <!-- <a class="more">more</a> -->
+                                </div>
+                                <div class="usage-amount">
+                                    <div>Usage amount</div>
+                                    <div class="price">$ 1.25</div>
+                                </div>
+                                <div class="pack">
+                                    <div class="center">more details</div>
+                                    <!-- <div class="right">
+                                        <img src="./assets/Icon_Ink.png" />
+                                    </div> -->
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="total-price">TOTAL: 2.16 tokens</div>
+                </div>
+
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="button-area">
+                        <button type="button" class="btn btn-danger" id="sufficient-print" data-dismiss="modal">
                 Print
               </button>
+                    </div>
+                    <div class="status">STATUS: SUFFICIENT BALANCE</div>
+                </div>
             </div>
-            <div class="status">STATUS: SUFFICIENT BALANCE</div>
-          </div>
         </div>
-      </div>
     </div>
 
     <div class="modal fade" id="insufficientBalanceModal">
-      <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <!-- Modal Header -->
-          <div class="modal-header">
-            <div class="modal-title">Consumable Usage Information</div>
-            <button type="button" class="close" data-dismiss="modal">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <!-- Modal Header -->
+                <div class="modal-header">
+                    <div class="modal-title">Consumable Usage Information</div>
+                    <button type="button" class="close" data-dismiss="modal">
               <span>&times;</span>
             </button>
-          </div>
+                </div>
 
-          <!-- Modal body -->
-          <div class="modal-body">
-            <div class="items d-flex">
-              <div class="item media">
-                <div class="main">
-                  <a class="more">more</a>
-                  <div class="type">Media</div>
-                  <div class="usage-amount">
-                    <div>Usage amount</div>
-                    <div class="price">$ 1.25</div>
-                  </div>
-                  <div class="pack">
-                    <div class="left">$00.00</div>
-                    <div class="right">
-                      <img src="./assets/Icon_Media.png" />
+                <!-- Modal body -->
+                <div class="modal-body">
+                    <div class="items d-flex">
+                        <div class="item media">
+                            <div class="main">
+                                <a class="more">more</a>
+                                <div class="type">Media</div>
+                                <div class="usage-amount">
+                                    <div>Usage amount</div>
+                                    <div class="price">$ 1.25</div>
+                                </div>
+                                <div class="pack">
+                                    <div class="left">$00.00</div>
+                                    <div class="right">
+                                        <img src="./assets/Icon_Media.png" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="details">
+                                <div class="type">Media</div>
+                                <div class="doc-size"></div>
+                                <div><span class="copies"></span> pages</div>
+                                <div>$ <span class="price"></span></div>
+                            </div>
+                        </div>
+                        <div class="item ink">
+                            <div>
+                                <a class="more">more</a>
+                                <div class="type">Ink</div>
+                                <div class="usage-amount">
+                                    <div>Usage amount</div>
+                                    <div class="price">$ 1.25</div>
+                                </div>
+                                <div class="pack">
+                                    <div class="left">$00.00</div>
+                                    <div class="right">
+                                        <img src="./assets/Icon_Ink.png" />
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
-                  </div>
+                    <div class="total-price">TOTAL:$ 2.50</div>
                 </div>
-                <div class="details">
-                  <div class="type">Media</div>
-                  <div class="doc-size"></div>
-                  <div><span class="copies"></span> pages</div>
-                  <div>$ <span class="price"></span></div>
-                </div>
-              </div>
-              <div class="item ink">
-                <div>
-                  <a class="more">more</a>
-                  <div class="type">Ink</div>
-                  <div class="usage-amount">
-                    <div>Usage amount</div>
-                    <div class="price">$ 1.25</div>
-                  </div>
-                  <div class="pack">
-                    <div class="left">$00.00</div>
-                    <div class="right">
-                      <img src="./assets/Icon_Ink.png" />
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="total-price">TOTAL:$ 2.50</div>
-          </div>
 
-          <!-- Modal footer -->
-          <div class="modal-footer">
-            <div class="button-area">
-              <button
-                type="button"
-                class="btn btn-danger"
-                id="insufficient-shop"
-                data-dismiss="modal"
-              >
+                <!-- Modal footer -->
+                <div class="modal-footer">
+                    <div class="button-area">
+                        <button type="button" class="btn btn-danger" id="insufficient-shop" data-dismiss="modal">
                 SHOP NOW
               </button>
+                    </div>
+                    <div class="status">STATUS: INSUFFICIENT BALANCE</div>
+                </div>
             </div>
-            <div class="status">STATUS: INSUFFICIENT BALANCE</div>
-          </div>
         </div>
-      </div>
     </div>
     <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"></script> -->
 
@@ -483,5 +476,6 @@
     <script src="./keyboard/Keyboard.js"></script>
 
     <script src="./script.js"></script>
-  </body>
+</body>
+
 </html>
