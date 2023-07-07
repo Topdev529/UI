@@ -316,6 +316,8 @@ function initialize() {
     dropdownItemsArea.innerHTML = dropdownItems.join("");
     dropdownDetailDOM[selectedDocType].style.display = "block";
     selectUnitDOM.innerHTML = UNITS[selectedUnit];
+    // $(".mid-section .mid-modal .mid-modal-main-content").innerHTML("")
+    // $(".mid-section .mid-modal .mid-modal-title").innerHTML("")
 }
 
 // set the initial value of the input element
@@ -447,22 +449,23 @@ paperTwoSidedDOM.addEventListener("click", () =>
 // };
 
 // Event listener for dropdown item click
-dropdownItemsArea.addEventListener("click", (event) => {
+// dropdownItemsArea.addEventListener("click", 
+dropdownClick = (event) => {
     event.preventDefault();
-    const target = event.target;
-    if (target.tagName === "A") {
-        const type = target.dataset.sizeType;
+    const target = $(event.target).is("a")?$(event.target):$($(event.target).parents("a")[0]);
+    // if (target.tagName === "A") {
+        const type = target.data("sizeType");
 
-        dropdownDetailDOM[selectedDocType].style.display = "none";
+        // dropdownDetailDOM[selectedDocType].style.display = "none";
         selectedDocType = type;
-        dropdownDetailDOM[type].style.display = "block";
+        // dropdownDetailDOM[type].style.display = "block";
 
         if (type !== "sizeEdited") {
-            const width = target.dataset.sizeWidth;
-            const height = target.dataset.sizeHeight;
-            const unit = target.dataset.sizeUnit;
+            const width = target.data("sizeWidth");
+            const height = target.data("sizeHeight");
+            const unit = target.data("sizeUnit");
             const subtitle = width + "X" + height + " " + unit;
-            const title = target.dataset.sizeTitle;
+            const title = target.data("sizeTitle");
 
             paperSetting.size = {
                 title,
@@ -477,30 +480,68 @@ dropdownItemsArea.addEventListener("click", (event) => {
                 dropdownDetailDOM[type].querySelector(".title").innerHTML = title;
                 dropdownDetailDOM[type].querySelector(".text").innerHTML = subtitle;
             }
+            $(event.target).parents(".mid-modal").toggle(false)
+        } else {
+            $(event.target).parents(".mid-modal-main-content").off("click")
+            $(event.target).parents(".mid-modal").find(".mid-modal-title").html("Custom Size")
+            editingCtrl = $("<div class='item-detail editing'><div class='editor'><input type='number' id='custom-size-width' class='use-keyboard-input'placeholder='width' /><span class='font-21'>×</span><input type='number' id='custom-size-height' class='use-keyboard-input'placeholder='height' /></div><div class='error-notifier'></div><div class='unit-selector'><button class='btn-prev selecting-unit'></button><div class='font-21 animate__animated'>in</div><button class='btn-next selecting-unit'></button></div><div class='button-section'><button class='btn-ok'>OK</button><div></div>")
+            editingCtrl.find(".btn-prev").on("click", prevUnitBtnClick)
+            editingCtrl.find(".btn-next").on("click", nextUnitBtnClick)
+            editingCtrl.find(".btn-ok").on("click", sizeOkBtnClick)
+            $(event.target).parents(".mid-modal-main-content").html(editingCtrl)
         }
-    }
-});
+    // }
+}
+// );
 
 // Event listener for unit Selection in Custom Size
-function unitSelected() {
+function unitSelected(event) {
     paperSetting.size.unit = UNITS[selectedUnit];
-    selectUnitDOM.innerHTML = UNITS[selectedUnit];
+    $(event.target).parents(".unit-selector").find(".animate__animated").html(UNITS[selectedUnit]);
 }
 
-nextUnitBtn.addEventListener("click", () => {
+function nextUnitBtnClick(event) {
     selectedUnit = (selectedUnit + 1) % UNITS.length;
-    unitSelected();
-});
+    unitSelected(event);
+};
 
-prevUnitBtn.addEventListener("click", () => {
+function sizeOkBtnClick(event) {
+    let modalContent = $($(event.target).parents(".mid-modal-main-content")[0])
+    modalContent.children(".error-notifier").html("")
+    const width = modalContent.children("input#custom-size-width").value;
+    const height = modalContent.children("input#custom-size-height").value;
+    const unit = animate__animated.html();
+    const subtitle = width + "X" + height + " " + unit;
+    const title = 'Custom Size';
+    if(width&&height){
+        paperSetting.size = {
+            title,
+            width,
+            height,
+            unit,
+        };
+
+        dropdownDetailDOM[type].querySelector(".title").innerHTML = title;
+        dropdownDetailDOM[type].querySelector(".text").innerHTML = subtitle;
+        $(".mid-modal").toggle(false)
+    } else {
+        modalContent.children(".error-notifier").html("Illigal size inputed!");
+    }
+}
+
+function prevUnitBtnClick(event) {
     selectedUnit = (selectedUnit - 1 + UNITS.length) % UNITS.length;
-    unitSelected();
-});
+    unitSelected(event);
+};
 
 // Prevent Dropdown toggle expanded when click button or input box
 dropdownToggleDOM.addEventListener("click", (event) => {
     event.preventDefault();
     const target = event.target;
+    $(".mid-section .mid-modal").toggle(true);
+    $(".mid-section .mid-modal .mid-modal-title").html("Select Size");
+    $(".mid-section .mid-modal .mid-modal-main-content").html(dropdownItems.join(""));
+    $(".mid-section .mid-modal .mid-modal-main-content").on("click", dropdownClick);
     if (target.tagName !== "DIV") {
         dropdown.classList.remove("show");
         dropdownMenu.classList.remove("show");
@@ -701,6 +742,9 @@ function drawPreview(info) {
     };
 }
 
+function closeModal() {
+    $(".mid-section .mid-modal").toggle(false);
+}
 // document.querySelectorAll(".use-keyboard-input").forEach((element) => {
 //   element.addEventListener("")
 // })

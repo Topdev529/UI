@@ -322,7 +322,106 @@
   .setting-board .mid-section {
     padding: 1px 11.5px 2px;
   }
+
+  .setting-board .mid-section .mid-modal {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    padding: 5px;
+    padding-bottom: 10px;
+  }
   
+  .setting-board .mid-section .mid-modal-content {
+    width: 100%;
+    height: 100%;
+    background: white;
+    border-radius: 7px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .setting-board .mid-section .mid-modal-content .mid-modal-main-content {
+    /* overflow: scroll; */
+    height: 100%;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+
+  .setting-board .mid-section .mid-modal-content .mid-modal-main-content::-webkit-scrollbar {
+    width: 8px;
+    height: 5px;
+    background: #D9D9D9;
+  }
+  
+  .setting-board .mid-section .mid-modal-content .mid-modal-main-content::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 8px;
+  }
+  
+  .setting-board .mid-section .mid-modal-content .mid-modal-main-content::-webkit-scrollbar-thumb {
+    background: #573CFA;
+    border-radius: 8px;
+  }
+  
+  .setting-board .mid-section .mid-modal-content .close-mid-modal-button{
+    margin: 15px;
+    position: absolute;
+    display: inline;
+  }
+  
+  .setting-board .mid-section .mid-modal-title{
+    margin:15px;
+    text-align: center;
+    margin-bottom: 0px;
+    /* width: 100%; */
+    font-size: larger;
+    font-weight: 700;
+  }
+
+  .editor {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 0 50px;
+    padding-top: 10px;
+  }
+
+  .unit-selector {
+      display: flex;
+      width: 100%;
+      flex-direction: row;
+      justify-content: space-around;
+      padding: 20px 70px 20px;
+  }
+
+  .font-21.animate__animated {
+      margin-top: -5px;
+  }
+
+  .mid-modal-main-content button.btn-ok {
+      width: 110px;
+      border-radius: 5px;
+      margin: 0 auto;
+  }
+
+  .button-section {
+      display: flex;
+  }
+
+  .mid-modal input {
+      text-align: center;
+      width: 74px;
+  }
+
+  .mid-modal .error-notifier {
+      display: flex;
+      padding: 10px;
+      color: red;
+      width: 100%;
+      text-align: center;
+  }
+
   .setting-board .mid-section .item {
     height: 131px;
     cursor: pointer;
@@ -451,22 +550,6 @@
   .setting-board .mid-section .dropdown .dropdown-items-area a span {
     position: relative;
     z-index: -1;
-  }
-  
-  .setting-board .mid-section .dropdown-menu .dropdown-items-area::-webkit-scrollbar {
-    width: 8px;
-    height: 5px;
-    background: #D9D9D9;
-  }
-  
-  .setting-board .mid-section .dropdown-menu .dropdown-items-area::-webkit-scrollbar-track {
-    box-shadow: inset 0 0 5px grey;
-    border-radius: 8px;
-  }
-  
-  .setting-board .mid-section .dropdown-menu .dropdown-items-area::-webkit-scrollbar-thumb {
-    background: #573CFA;
-    border-radius: 8px;
   }
   
   .setting-board .mid-section .item .dropdown-item {
